@@ -1,6 +1,7 @@
 import { type App } from "app";
 import { findElement, isElementNode, isTextNode, prepareFragment } from "utils";
 import { handleBind } from "./bind.handler";
+import { handleHtml } from "./html.handler";
 import { handleModel } from "./model.handler";
 import { handleMustache } from "./mustache.handler";
 import { handleOn } from "./on.handler";
@@ -67,5 +68,6 @@ function compileElementNode(node: HTMLElement, app: App) {
     handleOn(node, attr, app);
     handleModel(node, attr, app);
     handleShow(node, attr, app);
+    handleHtml(node, attr, app);
   });
 }
