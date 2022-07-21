@@ -4,6 +4,7 @@ import { handleBind } from "./bind.handler";
 import { handleModel } from "./model.handler";
 import { handleMustache } from "./mustache.handler";
 import { handleOn } from "./on.handler";
+import { handleShow } from "./show.handler";
 
 /**
  * Transpile framework-specific syntax into common HTML.
@@ -65,5 +66,6 @@ function compileElementNode(node: Element, app: App) {
     handleBind(node, attr, app);
     handleOn(node, attr, app);
     handleModel(node, attr, app);
+    handleShow(node, attr, app);
   });
 }
