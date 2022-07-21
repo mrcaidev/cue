@@ -20,6 +20,21 @@ describe("bind directive", () => {
     expect(target2.className).toEqual("normal");
   });
 
+  it("can handle boolean attributes", () => {
+    document.body.innerHTML = `
+      <div id="app">
+        <input :disabled="forbidden" data-testid="1" />
+      </div>
+    `;
+    const app = createApp({ root: "#app", data: { forbidden: false } });
+    const target = screen.getByTestId("1") as HTMLInputElement;
+
+    expect(target.disabled).toEqual(false);
+
+    app.data.forbidden = true;
+    expect(target.disabled).toEqual(true);
+  });
+
   it("is reponsive", () => {
     document.body.innerHTML = `
       <div id="app">

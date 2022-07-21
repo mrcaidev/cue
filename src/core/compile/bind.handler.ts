@@ -1,6 +1,7 @@
 import { type App } from "app";
 import { Watcher } from "core/watcher";
 import { getValueByPath } from "utils";
+import { booleanAttrs } from "../../constants";
 
 /**
  * Handle `bind` directive.
@@ -35,8 +36,15 @@ export function handleBind(node: HTMLElement, attr: string, app: App) {
  * @param field - Field to bind.
  */
 function modelToView(node: HTMLElement, attr: string, app: App, field: string) {
-  node.setAttribute(attr, getValueByPath(app.data, field));
-  new Watcher(app.data, field, (newValue) => {
-    node.setAttribute(attr, newValue);
-  });
+  if (booleanAttrs.includes(attr)) {
+    node.toggleAttribute(attr, Boolean(getValueByPath(app.data, field)));
+    new Watcher(app.data, field, (newValue) => {
+      node.toggleAttribute(attr, Boolean(newValue));
+    });
+  } else {
+    node.setAttribute(attr, getValueByPath(app.data, field));
+    new Watcher(app.data, field, (newValue) => {
+      node.setAttribute(attr, newValue);
+    });
+  }
 }
