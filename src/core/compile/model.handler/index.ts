@@ -25,7 +25,7 @@ const handlerMap = {
  *
  * @internal
  */
-export function handleModel(node: Element, attr: string, app: App) {
+export function handleModel(node: HTMLElement, attr: string, app: App) {
   // c-model="title" -> hasDirective = true, modelField = title.
   const hasDirective = attr.startsWith("c-model");
   const modelField = node.getAttribute(attr);

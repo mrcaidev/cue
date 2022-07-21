@@ -11,7 +11,7 @@ import { getValueByPath } from "utils";
  *
  * @internal
  */
-export function handleShow(node: Element, attr: string, app: App) {
+export function handleShow(node: HTMLElement, attr: string, app: App) {
   // c-show="shouldShow" -> field = "shouldShow".
   const hasDirective = attr.startsWith("c-show");
   const field = node.getAttribute(attr);

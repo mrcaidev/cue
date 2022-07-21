@@ -9,7 +9,7 @@ import { type App } from "app";
  *
  * @internal
  */
-export function handleOn(node: Element, attr: string, app: App) {
+export function handleOn(node: HTMLElement, attr: string, app: App) {
   // c-on:click="handler" -> event = "click", field = "handler".
   const event = attr.match(/^(?:(?:c-on:)|@)(.*)$/)?.at(1);
   const field = node.getAttribute(attr);
@@ -32,7 +32,12 @@ export function handleOn(node: Element, attr: string, app: App) {
  * @param app - App instance.
  * @param field - Field to bind.
  */
-function viewToModel(node: Element, event: string, app: App, field: string) {
+function viewToModel(
+  node: HTMLElement,
+  event: string,
+  app: App,
+  field: string
+) {
   const method = app[field] as (...args: any) => any;
   node.addEventListener(event, method.bind(app));
 }

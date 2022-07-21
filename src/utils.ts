@@ -59,8 +59,8 @@ export function setValueByPath(
  *
  * @internal
  */
-export function isElementNode(node: Node) {
-  return node instanceof Element;
+export function isElementNode(node: Node): node is HTMLElement {
+  return node instanceof HTMLElement;
 }
 
 /**
@@ -71,7 +71,7 @@ export function isElementNode(node: Node) {
  *
  * @internal
  */
-export function isTextNode(node: Node) {
+export function isTextNode(node: Node): node is Text {
   return node instanceof Text;
 }
 

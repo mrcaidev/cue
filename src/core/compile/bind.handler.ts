@@ -11,7 +11,7 @@ import { getValueByPath } from "utils";
  *
  * @internal
  */
-export function handleBind(node: Element, attr: string, app: App) {
+export function handleBind(node: HTMLElement, attr: string, app: App) {
   // c-bind:class="title" -> bindAttr = "class", field = "title".
   const bindAttr = attr.match(/^(?:c-bind)?:(.*)$/)?.at(1);
   const field = node.getAttribute(attr);
@@ -34,7 +34,7 @@ export function handleBind(node: Element, attr: string, app: App) {
  * @param app - App instance.
  * @param field - Field to bind.
  */
-function modelToView(node: Element, attr: string, app: App, field: string) {
+function modelToView(node: HTMLElement, attr: string, app: App, field: string) {
   node.setAttribute(attr, getValueByPath(app.data, field));
   new Watcher(app.data, field, (newValue) => {
     node.setAttribute(attr, newValue);

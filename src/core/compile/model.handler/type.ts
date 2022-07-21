@@ -25,7 +25,7 @@ export enum ModelType {
  *
  * @internal
  */
-export function getModelType(node: Element, app: App, field: string) {
+export function getModelType(node: HTMLElement, app: App, field: string) {
   switch (node.tagName) {
     case "SELECT":
       return ModelType.SELECT;

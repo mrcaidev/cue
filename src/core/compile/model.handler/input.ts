@@ -16,7 +16,7 @@ export const inputHandler = { modelToView, viewToModel };
  * @param app - App instance.
  * @param field - Field to bind.
  */
-function modelToView(node: Element, app: App, field: string) {
+function modelToView(node: HTMLElement, app: App, field: string) {
   const input = node as HTMLInputElement;
   input.value = getValueByPath(app.data, field);
   new Watcher(app.data, field, (newValue) => {
@@ -31,7 +31,7 @@ function modelToView(node: Element, app: App, field: string) {
  * @param app - App instance.
  * @param field - Field to bind.
  */
-function viewToModel(node: Element, app: App, field: string) {
+function viewToModel(node: HTMLElement, app: App, field: string) {
   node.addEventListener("input", (e: Event) => {
     const value = (e.target as HTMLInputElement).value;
     setValueByPath(app.data, field, value);

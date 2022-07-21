@@ -32,9 +32,9 @@ export function compile(identifier: string, app: App) {
 function compileNode(node: Node, app: App) {
   node.childNodes.forEach((child) => {
     if (isTextNode(child)) {
-      compileTextNode(child as Text, app);
+      compileTextNode(child, app);
     } else if (isElementNode(child)) {
-      compileElementNode(child as Element, app);
+      compileElementNode(child, app);
       compileNode(child, app);
     }
   });
@@ -60,7 +60,7 @@ function compileTextNode(node: Text, app: App) {
  *
  * @internal
  */
-function compileElementNode(node: Element, app: App) {
+function compileElementNode(node: HTMLElement, app: App) {
   // Handle all attributes of the element.
   node.getAttributeNames().forEach((attr) => {
     handleBind(node, attr, app);
