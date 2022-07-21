@@ -26,7 +26,7 @@ yarn add @mrcaidev/cue # yarn
 pnpm add @mrcaidev/cue # pnpm
 ```
 
-For detailed documentation, please refer to the [documentation](https://mrcaidev.github.io/cue/wiki).
+For detailed documentation, please refer to the [documentation](https://github.com/mrcaidev/cue/wiki).
 
 ## 🤝 Contributing
 
