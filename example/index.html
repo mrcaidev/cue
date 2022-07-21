@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="src/style.css" rel="stylesheet" />
+    <title>Cue - Example</title>
+  </head>
+  <body>
+    <div id="app">
+      <main class="container">
+        <section class="panel">
+          <h2 class="panel-title">View</h2>
+          <button class="reset" @click="reset">Reset</button>
+          <form class="form">
+            <!-- Name section -->
+            <p class="field-title">
+              <label for="name">Name</label>
+            </p>
+            <div class="field-content">
+              <input type="text" name="name" id="name" c-model="name" />
+            </div>
+
+            <!-- Sex section -->
+            <p class="field-title">Sex</p>
+            <div class="field-content">
+              <input
+                type="radio"
+                name="sex"
+                id="sex-male"
+                value="male"
+                checked
+                c-model="sex"
+              />
+              <label for="male">Male</label>
+              <input
+                type="radio"
+                name="sex"
+                id="sex-female"
+                value="female"
+                c-model="sex"
+              />
+              <label for="female">Female</label>
+            </div>
+
+            <!-- Tech stack section -->
+            <p class="field-title">Tech stack</p>
+            <div class="field-content">
+              <input
+                type="checkbox"
+                name="tech"
+                id="tech-react"
+                value="react"
+                c-model="tech"
+              />
+              <label for="tech-react">React</label>
+              <input
+                type="checkbox"
+                name="tech"
+                id="tech-vue"
+                value="vue"
+                c-model="tech"
+              />
+              <label for="tech-vue">Vue</label>
+              <input
+                type="checkbox"
+                name="tech"
+                id="tech-angular"
+                value="angular"
+                c-model="tech"
+              />
+              <label for="tech-angular">Angular</label>
+            </div>
+
+            <!-- Language section -->
+            <p class="field-title">
+              <label for="language">Preferred language</label>
+            </p>
+            <div class="field-content">
+              <select name="language" id="language" c-model="language">
+                <option value="english" selected>English</option>
+                <option value="chinese">Chinese</option>
+                <option value="german">German</option>
+              </select>
+            </div>
+
+            <!-- E-mail section -->
+            <p class="field-title">
+              <label for="should-email">E-mail notifications</label>
+            </p>
+            <div class="field-content">
+              <input
+                type="checkbox"
+                name="shouldEmail"
+                id="should-email"
+                c-model="shouldEmail"
+              />
+            </div>
+          </form>
+        </section>
+
+        <!-- Display section -->
+        <section class="panel">
+          <h2 class="panel-title">Model</h2>
+          <ul class="result-list">
+            <li>Name: {{name}}</li>
+            <li>Sex: {{sex}}</li>
+            <li>Tech stack: {{tech}}</li>
+            <li>Language: {{language}}</li>
+            <li>E-mail notifications: {{shouldEmail}}</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+  <script type="module" src="src/main.ts"></script>
+</html>
