@@ -26,18 +26,18 @@ const handlerMap = {
  * @internal
  */
 export function handleModel(node: HTMLElement, attr: string, app: App) {
-  // c-model="title" -> hasDirective = true, modelField = title.
+  // c-model="title" -> field = title.
   const hasDirective = attr.startsWith("c-model");
-  const modelField = node.getAttribute(attr);
-  if (!hasDirective || !modelField) {
+  const field = node.getAttribute(attr);
+  if (!hasDirective || !field) {
     return;
   }
 
   // Two-bind View and Model.
-  const modelType = getModelType(node, app, modelField);
+  const modelType = getModelType(node, app, field);
   const { modelToView, viewToModel } = handlerMap[modelType];
-  modelToView(node, app, modelField);
-  viewToModel(node, app, modelField);
+  modelToView(node, app, field);
+  viewToModel(node, app, field);
 
   // Remove directive.
   node.removeAttribute(attr);

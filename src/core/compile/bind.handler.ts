@@ -1,6 +1,5 @@
 import { type App } from "app";
 import { Watcher } from "core/watcher";
-import { getValueByPath } from "utils";
 import { booleanAttrs } from "../../constants";
 
 /**
@@ -37,12 +36,10 @@ export function handleBind(node: HTMLElement, attr: string, app: App) {
  */
 function modelToView(node: HTMLElement, attr: string, app: App, field: string) {
   if (booleanAttrs.includes(attr)) {
-    node.toggleAttribute(attr, Boolean(getValueByPath(app.data, field)));
     new Watcher(app.data, field, (newValue) => {
       node.toggleAttribute(attr, Boolean(newValue));
     });
   } else {
-    node.setAttribute(attr, getValueByPath(app.data, field));
     new Watcher(app.data, field, (newValue) => {
       node.setAttribute(attr, newValue);
     });

@@ -1,6 +1,5 @@
 import { type App } from "app";
 import { Watcher } from "core/watcher";
-import { getValueByPath } from "utils";
 
 /**
  * Handle `html` directive.
@@ -34,7 +33,6 @@ export function handleHtml(node: HTMLElement, attr: string, app: App) {
  * @param field - Field to bind.
  */
 function modelToView(node: HTMLElement, app: App, field: string) {
-  node.innerHTML = getValueByPath(app.data, field);
   new Watcher(app.data, field, (newValue) => {
     node.innerHTML = newValue;
   });

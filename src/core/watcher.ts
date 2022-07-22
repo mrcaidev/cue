@@ -38,6 +38,9 @@ export class Watcher implements Subscriptor {
     Subscriptors.waitingSubscriptor = this;
     this.currentValue = getValueByPath(this.data, this.field);
     Subscriptors.waitingSubscriptor = null;
+
+    // Update at once.
+    this.callback(this.currentValue);
   }
 
   /**

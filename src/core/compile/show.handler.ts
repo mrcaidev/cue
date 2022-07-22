@@ -1,6 +1,5 @@
 import { type App } from "app";
 import { Watcher } from "core/watcher";
-import { getValueByPath } from "utils";
 
 /**
  * Handle `show` directive.
@@ -34,7 +33,6 @@ export function handleShow(node: HTMLElement, attr: string, app: App) {
  * @param field - Field to bind.
  */
 function modelToView(node: HTMLElement, app: App, field: string) {
-  node.style.display = getValueByPath(app.data, field) ? "" : "none";
   new Watcher(app.data, field, (newValue) => {
     node.style.display = newValue ? "" : "none";
   });

@@ -1,6 +1,6 @@
 import { type App } from "app";
 import { Watcher } from "core/watcher";
-import { getValueByPath, setValueByPath } from "utils";
+import { setValueByPath } from "utils";
 
 /**
  * Handle `model` directive on radiobox.
@@ -18,7 +18,6 @@ export const radioHandler = { modelToView, viewToModel };
  */
 function modelToView(node: HTMLElement, app: App, field: string) {
   const radio = node as HTMLInputElement;
-  radio.checked = getValueByPath(app.data, field) === radio.value;
   new Watcher(app.data, field, (newValue) => {
     radio.checked = newValue === radio.value;
   });

@@ -18,7 +18,6 @@ export const multiCheckboxHandler = { modelToView, viewToModel };
  */
 function modelToView(node: HTMLElement, app: App, field: string) {
   const checkbox = node as HTMLInputElement;
-  checkbox.checked = getValueByPath(app.data, field).includes(checkbox.value);
   new Watcher(app.data, field, (newList) => {
     checkbox.checked = newList.includes(checkbox.value);
   });

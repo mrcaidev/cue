@@ -17,19 +17,13 @@ export function handleMustache(node: Text, app: App) {
   // Save original text as template of updating afterwards.
   const template = node.textContent ?? "";
 
-  node.textContent =
-    // Replace all double curly brackets.
-    template?.replace(mustacheRegex, (...regexGroup) => {
-      // Watch the field specified in brackets.
-      const field = regexGroup[1];
-      new Watcher(app.data, field, () => {
-        node.textContent = template?.replace(mustacheRegex, (...regexGroup) => {
-          const field = regexGroup[1];
-          return getValueByPath(app.data, field);
-        });
+  // Place a watcher on each field.
+  [...template.matchAll(mustacheRegex)].forEach((group) => {
+    new Watcher(app.data, group[1] ?? "", () => {
+      node.textContent = template.replace(mustacheRegex, (...regexGroup) => {
+        const field = regexGroup[1];
+        return getValueByPath(app.data, field);
       });
-
-      // Fetch latest value on first replace.
-      return getValueByPath(app.data, field);
-    }) ?? null;
+    });
+  });
 }

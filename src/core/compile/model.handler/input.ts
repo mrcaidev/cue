@@ -1,6 +1,6 @@
 import { type App } from "app";
 import { Watcher } from "core/watcher";
-import { getValueByPath, setValueByPath } from "utils";
+import { setValueByPath } from "utils";
 
 /**
  * Handle `model` directive on input or textarea.
@@ -18,7 +18,6 @@ export const inputHandler = { modelToView, viewToModel };
  */
 function modelToView(node: HTMLElement, app: App, field: string) {
   const input = node as HTMLInputElement;
-  input.value = getValueByPath(app.data, field);
   new Watcher(app.data, field, (newValue) => {
     input.value = newValue;
   });

@@ -1,6 +1,6 @@
 import { type App } from "app";
 import { Watcher } from "core/watcher";
-import { getValueByPath, setValueByPath } from "utils";
+import { setValueByPath } from "utils";
 
 /**
  * Handle `model` directive on checkbox.
@@ -18,7 +18,6 @@ export const checkboxHandler = { modelToView, viewToModel };
  */
 function modelToView(node: HTMLElement, app: App, field: string) {
   const checkbox = node as HTMLInputElement;
-  checkbox.checked = getValueByPath(app.data, field);
   new Watcher(app.data, field, (newChecked) => {
     checkbox.checked = newChecked;
   });

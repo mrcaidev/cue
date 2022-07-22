@@ -1,6 +1,6 @@
 import { type App } from "app";
 import { Watcher } from "core/watcher";
-import { getValueByPath, setValueByPath } from "utils";
+import { setValueByPath } from "utils";
 
 /**
  * Handle `model` directive on select.
@@ -18,7 +18,6 @@ export const selectHandler = { modelToView, viewToModel };
  */
 function modelToView(node: HTMLElement, app: App, field: string) {
   const select = node as HTMLSelectElement;
-  select.value = getValueByPath(app.data, field);
   new Watcher(app.data, field, (newValue) => {
     select.value = newValue;
   });
