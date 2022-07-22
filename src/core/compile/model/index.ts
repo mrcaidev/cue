@@ -1,19 +1,23 @@
 import { type App } from "app";
 import { checkboxHandler } from "./checkbox";
 import { inputHandler } from "./input";
-import { invalidHandler } from "./invalid";
 import { multiCheckboxHandler } from "./multi-checkbox";
 import { radioHandler } from "./radio";
 import { selectHandler } from "./select";
 import { getModelType, ModelType } from "./type";
 
-const handlerMap = {
+const handlerMap: Record<
+  Exclude<ModelType, ModelType.INVALID>,
+  {
+    bindModelToView: (node: HTMLElement, app: App, field: string) => void;
+    bindViewToModel: (node: HTMLElement, app: App, field: string) => void;
+  }
+> = {
   [ModelType.INPUT]: inputHandler,
   [ModelType.CHECKBOX]: checkboxHandler,
   [ModelType.MULTI_CHECKBOX]: multiCheckboxHandler,
   [ModelType.RADIO]: radioHandler,
   [ModelType.SELECT]: selectHandler,
-  [ModelType.INVALID]: invalidHandler,
 };
 
 /**
@@ -26,19 +30,18 @@ const handlerMap = {
  * @internal
  */
 export function handleModel(node: HTMLElement, attr: string, app: App) {
-  // c-model="title" -> field = title.
-  const hasDirective = attr.startsWith("c-model");
+  const isDirective = attr.startsWith("c-model");
+  if (!isDirective) return;
+
   const field = node.getAttribute(attr);
-  if (!hasDirective || !field) {
-    return;
-  }
+  if (!field) return;
 
-  // Two-bind View and Model.
   const modelType = getModelType(node, app, field);
-  const { modelToView, viewToModel } = handlerMap[modelType];
-  modelToView(node, app, field);
-  viewToModel(node, app, field);
+  if (modelType === ModelType.INVALID) return;
 
-  // Remove directive.
+  const { bindModelToView, bindViewToModel } = handlerMap[modelType];
+  bindModelToView(node, app, field);
+  bindViewToModel(node, app, field);
+
   node.removeAttribute(attr);
 }

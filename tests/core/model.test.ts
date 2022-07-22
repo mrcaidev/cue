@@ -52,12 +52,12 @@ describe("model directive", () => {
 
   it("works on multi-checkbox", () => {
     document.body.innerHTML = `
-        <div id="app">
-          <input type="checkbox" value="1" c-model="pool" data-testid="1" />
-          <input type="checkbox" value="2" c-model="pool" data-testid="2" />
-          <input type="checkbox" value="3" c-model="pool" data-testid="3" />
-        </div>
-      `;
+      <div id="app">
+        <input type="checkbox" value="1" c-model="pool" data-testid="1" />
+        <input type="checkbox" value="2" c-model="pool" data-testid="2" />
+        <input type="checkbox" value="3" c-model="pool" data-testid="3" />
+      </div>
+    `;
     const app = createApp({ root: "#app", data: { pool: [] } });
     const target1 = screen.getByTestId("1") as HTMLInputElement;
     const target2 = screen.getByTestId("2") as HTMLInputElement;

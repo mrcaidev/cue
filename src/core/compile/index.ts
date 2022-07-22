@@ -1,11 +1,11 @@
 import { type App } from "app";
 import { findElement, isElementNode, isTextNode, prepareFragment } from "utils";
-import { handleBind } from "./bind.handler";
-import { handleHtml } from "./html.handler";
-import { handleModel } from "./model.handler";
-import { handleMustache } from "./mustache.handler";
-import { handleOn } from "./on.handler";
-import { handleShow } from "./show.handler";
+import { handleBind } from "./bind";
+import { handleHtml } from "./html";
+import { handleModel } from "./model";
+import { handleMustache } from "./mustache";
+import { handleOn } from "./on";
+import { handleShow } from "./show";
 
 /**
  * Transpile framework-specific syntax into common HTML.

@@ -10,28 +10,20 @@ import { type App } from "app";
  * @internal
  */
 export function handleOn(node: HTMLElement, attr: string, app: App) {
-  // c-on:click="handler" -> event = "click", field = "handler".
-  const event = attr.match(/^(?:(?:c-on:)|@)(.*)$/)?.at(1);
-  const field = node.getAttribute(attr);
-  if (!event || !field) {
-    return;
-  }
+  const isDirective = attr.startsWith("c-on") || attr.startsWith("@");
+  if (!isDirective) return;
 
-  // View -> Model.
+  const event = attr.match(/^(?:(?:c-on:)|@)(.*)$/)?.at(1);
+  if (!event) return;
+
+  const field = node.getAttribute(attr);
+  if (!field) return;
+
   viewToModel(node, event, app, field);
 
-  // Remove directive.
   node.removeAttribute(attr);
 }
 
-/**
- * Bind view to model.
- *
- * @param node - Node to bind.
- * @param event - Event to listen.
- * @param app - App instance.
- * @param field - Field to bind.
- */
 function viewToModel(
   node: HTMLElement,
   event: string,

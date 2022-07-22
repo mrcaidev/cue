@@ -12,17 +12,17 @@ import { booleanAttrs } from "../../constants";
  * @internal
  */
 export function handleBind(node: HTMLElement, attr: string, app: App) {
-  // c-bind:class="title" -> bindAttr = "class", field = "title".
-  const bindAttr = attr.match(/^(?:c-bind)?:(.*)$/)?.at(1);
+  const isDirective = attr.startsWith("c-bind") || attr.startsWith(":");
+  if (!isDirective) return;
+
+  const targetAttr = attr.match(/^(?:(?:c-bind:)|:)(.*)$/)?.at(1);
+  if (!targetAttr) return;
+
   const field = node.getAttribute(attr);
-  if (!bindAttr || !field) {
-    return;
-  }
+  if (!field) return;
 
-  // Model -> View.
-  modelToView(node, bindAttr, app, field);
+  modelToView(node, targetAttr, app, field);
 
-  // Remove directive.
   node.removeAttribute(attr);
 }
 

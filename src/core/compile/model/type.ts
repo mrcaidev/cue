@@ -39,7 +39,7 @@ export function getModelType(node: HTMLElement, app: App, field: string) {
           const modelValue = getValueByPath(app.data, field);
           if (typeof modelValue === "boolean") {
             return ModelType.CHECKBOX;
-          } else if (modelValue instanceof Array) {
+          } else if (Array.isArray(modelValue)) {
             return ModelType.MULTI_CHECKBOX;
           } else {
             return ModelType.INVALID;
