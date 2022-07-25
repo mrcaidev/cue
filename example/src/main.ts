@@ -1,19 +1,25 @@
 import { createApp } from "@mrcaidev/cue";
+import "./styles/globals.css";
+import "./styles/utils.css";
 
 createApp({
   root: "#app",
   data: {
-    name: "William",
-    sex: "male",
-    tech: [],
-    language: "english",
-    shouldEmail: false,
+    status: "normal",
+    user: {
+      name: "",
+      sex: "male",
+      tech: [],
+      lang: "english",
+      isAdult: false,
+    },
+    shouldShow: false,
+    rawHtml: "<p>I'm raw HTML</p>",
   },
-  reset() {
-    this.data.name = "";
-    this.data.sex = "male";
-    this.data.tech = [];
-    this.data.language = "english";
-    this.shouldEmail = false;
+  toggleStatus() {
+    this.data.status = this.data.status === "normal" ? "danger" : "normal";
+  },
+  toggleShouldShow() {
+    this.data.shouldShow = !this.data.shouldShow;
   },
 });

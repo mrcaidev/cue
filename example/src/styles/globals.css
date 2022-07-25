@@ -1,0 +1,113 @@
+/* Override default styles. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f172a;
+  color: #cbd5e1;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.75;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+main {
+  padding: 20px 32px;
+}
+
+section {
+  padding: 10px 0;
+}
+
+a {
+  color: #bae6fd;
+}
+
+a:hover {
+  color: #7dd3fc;
+}
+
+a:active {
+  color: #38bdf8;
+}
+
+button {
+  all: unset;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #bae6fd;
+  color: #334155;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+button:hover {
+  background-color: #7dd3fc;
+}
+
+button:active {
+  background-color: #38bdf8;
+}
+
+hr {
+  border: 0.5px solid #1e293b;
+  margin: 4px 0;
+}
+
+input[type="text"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus,
+select:focus {
+  outline: 2px solid #bae6fd;
+  outline-offset: 1px;
+}
+
+input[type="text"] {
+  all: unset;
+  max-width: 100%;
+  padding: 4px 8px;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  all: unset;
+  display: inline-block;
+  width: 0.5rem;
+  aspect-ratio: 1 / 1;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  vertical-align: baseline;
+}
+
+input[type="checkbox"] {
+  border-radius: 2px;
+}
+
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+  background-color: #0ea5e9;
+}
+
+select {
+  all: unset;
+  padding: 0px 8px;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+}
+
+option {
+  all: unset;
+  border: none;
+  box-shadow: none;
+  background-color: #f1f5f9;
+  color: #334155;
+}
