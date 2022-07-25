@@ -4,6 +4,7 @@
   </a>
   <h1>Cue</h1>
   <p>A minimal MVVM framework</p>
+  <a href="https://github.com/mrcaidev/cue/wiki" target="_blank" rel="noreferrer" hrefLang="en"><strong>Explore the documentation 》</strong></a>
 </div>
 
 ## ✨ Introduction
@@ -26,7 +27,7 @@ yarn add @mrcaidev/cue # yarn
 pnpm add @mrcaidev/cue # pnpm
 ```
 
-For detailed documentation, please refer to the [documentation](https://github.com/mrcaidev/cue/wiki).
+For detailed usage, please refer to the [documentation](https://github.com/mrcaidev/cue/wiki).
 
 ## 🤝 Contributing
 
