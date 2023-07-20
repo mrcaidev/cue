@@ -40,7 +40,7 @@ devDependencies:
   npm-run-all: 4.1.5
   prettier: 2.7.1
   rimraf: 3.0.2
-  ts-jest: 28.0.7_qfrsgica3z6cdgxy6jhs4zk72q
+  ts-jest: 28.0.7_bi2kohzqnxavgozw3csgny5hju
   tsc-alias: 1.7.0
   typescript: 4.7.4
 
@@ -3769,7 +3769,7 @@ packages:
       levn: 0.3.0
       prelude-ls: 1.1.2
       type-check: 0.3.2
-      word-wrap: 1.2.3
+      word-wrap: 1.2.4
     dev: true
 
   /optionator/0.9.1:
@@ -3781,7 +3781,7 @@ packages:
       levn: 0.4.1
       prelude-ls: 1.2.1
       type-check: 0.4.0
-      word-wrap: 1.2.3
+      word-wrap: 1.2.4
     dev: true
 
   /p-limit/2.3.0:
@@ -4569,7 +4569,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-jest/28.0.7_qfrsgica3z6cdgxy6jhs4zk72q:
+  /ts-jest/28.0.7_bi2kohzqnxavgozw3csgny5hju:
     resolution: {integrity: sha512-wWXCSmTwBVmdvWrOpYhal79bDpioDy4rTT+0vyUnE3ZzM7LOAAGG9NXwzkEL/a516rQEgnMmS/WKP9jBPCVJyA==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
@@ -4590,7 +4590,6 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      '@babel/core': 7.18.9
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 28.1.3_@types+node@18.0.6
@@ -4866,8 +4865,8 @@ packages:
       isexe: 2.0.0
     dev: true
 
-  /word-wrap/1.2.3:
-    resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
+  /word-wrap/1.2.4:
+    resolution: {integrity: sha512-2V81OA4ugVo5pRo46hAoD2ivUJx8jXmWXfUkY4KFNw0hEptvN0QfH3K4nHiwzGeKl5rFKedV48QVoqYavy4YpA==}
     engines: {node: '>=0.10.0'}
     dev: true
 
