@@ -1,10 +1,4 @@
-node_modules
 coverage
 dist
-temp
-.vscode
-*.tsbuildinfo
-*.log
-.DS_Store
-*.pem
-
+node_modules
+*.tgz

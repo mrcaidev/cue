@@ -1,7 +1,0 @@
-{
-  "*.{html,css,md,json}": "prettier --write --cache",
-  "*.{js,ts}": [
-    "eslint --fix --cache --cache-location ./node_modules/.cache/eslint/.eslintcache",
-    "prettier --write --cache"
-  ]
-}
