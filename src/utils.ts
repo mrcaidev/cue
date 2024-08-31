@@ -1,54 +1,82 @@
 /**
- * Get value from nested object based on the given path.
+ * Check if a value is an object.
  *
- * @param obj An object.
- * @param path A string pointing to a field.
- * @returns Value of that field.
+ * @param value - The value to check.
+ * @returns `true` if it is an object, or `false` otherwise.
  *
  * @example
- * const obj = { message: { foo: "hello", bar: "world" } };
- * const result = getValueByPath(obj, "message.foo");
- * console.log(result); // "hello"
- *
- * @internal
+ * isObject({}); // true
+ * isObject([]); // true
+ * isObject(null); // false
+ * isObject(1); // false
  */
-export function getValueByPath(obj: Record<string, any>, path: string) {
-  return path.split(".").reduce((pre, cur) => {
-    try {
-      return pre[cur];
-    } catch {
-      return undefined;
-    }
-  }, obj) as any;
+export function isObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
 }
 
 /**
- * Set value in nested object based on path string.
+ * Get the value at a given path of an object.
  *
- * @param obj An object.
- * @param path Path string to set value.
- * @param value New value.
+ * @param object The object to query.
+ * @param path The path to the field, separated by dots.
+ * @returns The resolved value.
  *
  * @example
- * const obj = { message: { foo: "hello", bar: "world" } };
- * setValueByPath(obj, "message.foo", "example");
- * console.log(obj); // { message: { foo: "example", bar: "world" } };
- *
- * @internal
+ * const object = { foo: { a: "hello", b: "world" } };
+ * getValueByPath(object, "foo.a"); // "hello"
+ * getValueByPath(object, "foo.c"); // undefined
  */
-export function setValueByPath(
-  obj: Record<string, any>,
-  path: string,
-  value: any
-) {
-  path.split(".").reduce((pre, cur, index, array) => {
-    if (index !== array.length - 1) {
-      return pre[cur];
-    } else {
-      pre[cur] = value;
+export function getValueByPath(object: unknown, path: string) {
+  const segments = path.split(".");
+
+  let result = object;
+
+  for (const segment of segments) {
+    if (!isObject(result)) {
+      return undefined;
+    }
+
+    result = result[segment];
+  }
+
+  return result;
+}
+
+/**
+ * Set the value at a given path of an object.
+ *
+ * @param object An object to modify.
+ * @param path The path to the field, separated by dots.
+ * @param value The new value.
+ *
+ * @example
+ * const object = { foo: { a: "hello", b: "world" } };
+ * setValueByPath(object, "foo.a", "goodbye"); // { foo: { a: "goodbye", b: "world" } };
+ * setValueByPath(object, "foo.c", "yeah"); // { foo: { a: "hello", b: "world", c: "yeah" } };
+ */
+export function setValueByPath(object: unknown, path: string, value: unknown) {
+  const segments = path.split(".");
+
+  let result = object;
+
+  for (const segment of segments.slice(0, -1)) {
+    if (!isObject(result)) {
       return;
     }
-  }, obj);
+
+    if (!(segment in result)) {
+      result[segment] = {};
+    }
+
+    result = result[segment];
+  }
+
+  if (!isObject(result)) {
+    return;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  result[segments[segments.length - 1]!] = value;
 }
 
 /**

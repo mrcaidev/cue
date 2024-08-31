@@ -1,61 +1,48 @@
-import { getValueByPath, setValueByPath } from "utils";
+import { getValueByPath, setValueByPath } from "src/utils";
+import { describe, expect, test } from "vitest";
 
 describe("getValueByPath", () => {
-  it("returns value given correct path", () => {
-    const obj1 = { message: "foo" };
-    const result1 = getValueByPath(obj1, "message");
-    expect(result1).toEqual("foo");
-
-    const obj2 = { message: { foo: "bar" } };
-    const result2 = getValueByPath(obj2, "message.foo");
-    expect(result2).toEqual("bar");
-
-    const obj3 = { message: { foo: { bar: "baz" } } };
-    const result3 = getValueByPath(obj3, "message.foo.bar");
-    expect(result3).toEqual("baz");
+  test("It returns the correct value if the path is existent", () => {
+    const object = { foo: { a: "hello", b: "world" } };
+    const result = getValueByPath(object, "foo.a");
+    expect(result).toEqual("hello");
   });
 
-  it("returns undefined given incorrect path", () => {
-    const obj1 = {};
-    const result1 = getValueByPath(obj1, "message");
-    expect(result1).toEqual(undefined);
+  test("It returns undefined if the path is not existent", () => {
+    const object = { foo: { a: "hello", b: "world" } };
+    const result = getValueByPath(object, "foo.c");
+    expect(result).toBeUndefined();
+  });
 
-    const obj2 = { message: "foo" };
-    const result2 = getValueByPath(obj2, "foo");
-    expect(result2).toEqual(undefined);
+  test("It returns undefined if there is a non-object value in the path", () => {
+    const object = "foo";
+    const result = getValueByPath(object, "foo.a");
+    expect(result).toBeUndefined();
+  });
 
-    const obj3 = { message: { foo: "bar" } };
-    const result3 = getValueByPath(obj3, "message.bar");
-    expect(result3).toEqual(undefined);
+  test("Object does not get mutated", () => {
+    const object = { foo: { a: "hello", b: "world" } };
+    getValueByPath(object, "foo.a");
+    expect(object).toEqual({ foo: { a: "hello", b: "world" } });
   });
 });
 
 describe("setValueByPath", () => {
-  it("sets new value given new path", () => {
-    const obj1 = {};
-    setValueByPath(obj1, "message", "foo");
-    expect(obj1).toEqual({ message: "foo" });
-
-    const obj2 = { message: "foo" };
-    setValueByPath(obj2, "bar", "baz");
-    expect(obj2).toEqual({ message: "foo", bar: "baz" });
-
-    const obj3 = { message: { foo: "bar" } };
-    setValueByPath(obj3, "message.baz", "hello");
-    expect(obj3).toEqual({ message: { foo: "bar", baz: "hello" } });
+  test("It updates the value if the path is existent", () => {
+    const object = { foo: { a: "hello", b: "world" } };
+    setValueByPath(object, "foo.a", "goodbye");
+    expect(object).toEqual({ foo: { a: "goodbye", b: "world" } });
   });
 
-  it("modifies value given existing path", () => {
-    const obj1 = { message: "foo" };
-    setValueByPath(obj1, "message", "bar");
-    expect(obj1).toEqual({ message: "bar" });
+  test("It adds the value if the path is not existent", () => {
+    const object = {};
+    setValueByPath(object, "foo.a", "hello");
+    expect(object).toEqual({ foo: { a: "hello" } });
+  });
 
-    const obj2 = { message: { foo: "bar" } };
-    setValueByPath(obj2, "message.foo", "baz");
-    expect(obj2).toEqual({ message: { foo: "baz" } });
-
-    const obj3 = { message: { foo: { bar: "baz" } } };
-    setValueByPath(obj3, "message.foo", { hello: "world" });
-    expect(obj3).toEqual({ message: { foo: { hello: "world" } } });
+  test("It does nothing if there is a non-object value in the path", () => {
+    const object = "foo";
+    setValueByPath(object, "foo.a", "hello");
+    expect(object).toEqual("foo");
   });
 });
