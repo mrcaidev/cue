@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/mrcaidev/cue" target="_blank" rel="noreferrer" hrefLang="en">
-    <img src="public/logo.svg" alt="Logo" width="80px"/>
+    <img src="assets/logo.svg" alt="Logo" width="80px"/>
   </a>
   <h1>Cue</h1>
   <p>A minimal MVVM framework</p>
@@ -15,7 +15,7 @@ Cue - short for MrCai's Vue - is a light-weight MVVM framework. Features include
 - [x] Native TypeScript support.
 - [x] Handy directives, e.g. `c-bind`、`c-on`、`c-model`.
 
-![example](public/example.png)
+![example](assets/example.png)
 
 ## 🚀 Getting started
 
