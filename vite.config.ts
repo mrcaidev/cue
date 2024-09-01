@@ -19,5 +19,8 @@ export default defineConfig({
     sequence: {
       concurrent: true,
     },
+    coverage: {
+      include: ["src/**/*.ts"],
+    },
   },
 });
