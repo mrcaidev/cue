@@ -38,4 +38,4 @@ jobs:
         run: pnpm commitlint --last
 
       - name: Run tests
-        run: pnpm test
+        run: pnpm test --coverage
