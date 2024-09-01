@@ -1,62 +1,53 @@
-import { compile } from "./core/compile";
-import { toDeeplyReactive } from "./core/reactive";
+import { toDeepReactive } from "./reactive";
+import { transpile } from "./transpiler";
 
 /**
- * Options to create an app.
- *
- * @public
+ * Options of a Cue app.
  */
-export interface AppOptions extends Record<string, any> {
+interface Options {
   /**
-   * An identifier pointing to the root element of the app.
+   * The identifier of the root node, where the app mounts to.
    *
-   * @example
-   * "#app", "#root"
+   * @default "body"
+   *
+   * @example "#app", "#root"
    */
-  root: string;
+  root?: string;
 
   /**
-   * Data source of the whole app.
+   * Data source of the app.
    */
-  data: Record<string, any>;
+  data?: Record<string, any>;
+
+  /**
+   * Methods that can manipulate the data, or trigger some side effects.
+   */
+  methods?: Record<string, (...args: any[]) => any>;
 }
 
 /**
- * App on View-Model layer, allowing the two-way binding of View and Model.
- *
- * @public
+ * A View-Model that realizes the two-way binding of View and Model.
  */
 export class App {
-  /** Data. */
-  data: Record<string, any>;
+  public data: NonNullable<Options["data"]> = {};
+  public methods: NonNullable<Options["methods"]> = {};
 
-  /** Methods. */
-  [key: string]: any;
+  constructor(options: Options) {
+    const { root = "body", data = {}, methods = {} } = options;
 
-  constructor(options: AppOptions) {
-    const { root, data, ...rest } = options;
+    this.data = toDeepReactive(data);
+    this.methods = methods;
 
-    // Make data deeply reactive, and mount it onto app.
-    this.data = toDeeplyReactive(data);
-
-    // Mount methods onto app.
-    Object.entries(rest).forEach(([key, method]) => {
-      this[key] = method;
-    });
-
-    // Parse DOM.
-    compile(root, this);
+    transpile(document.querySelector(root) ?? document.body, this);
   }
 }
 
 /**
- * Create an app.
+ * Create a Cue app.
  *
- * @param options - Options to create an app.
- * @returns Created app.
- *
- * @public
+ * @param options - Options of the app.
+ * @returns The created app.
  */
-export function createApp(options: AppOptions) {
+export function createApp(options: Options) {
   return new App(options);
 }

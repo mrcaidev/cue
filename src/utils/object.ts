@@ -10,7 +10,7 @@
  * isObject(null); // false
  * isObject(1); // false
  */
-export function isObject(value: unknown): value is Record<string, unknown> {
+export function isObject(value: any): value is Record<string, any> {
   return typeof value === "object" && value !== null;
 }
 
@@ -26,7 +26,7 @@ export function isObject(value: unknown): value is Record<string, unknown> {
  * getValueByPath(object, "foo.a"); // "hello"
  * getValueByPath(object, "foo.c"); // undefined
  */
-export function getValueByPath(object: unknown, path: string) {
+export function getValueByPath(object: any, path: string) {
   const segments = path.split(".");
 
   let result = object;
@@ -54,12 +54,13 @@ export function getValueByPath(object: unknown, path: string) {
  * setValueByPath(object, "foo.a", "goodbye"); // { foo: { a: "goodbye", b: "world" } };
  * setValueByPath(object, "foo.c", "yeah"); // { foo: { a: "hello", b: "world", c: "yeah" } };
  */
-export function setValueByPath(object: unknown, path: string, value: unknown) {
+export function setValueByPath(object: any, path: string, value: any) {
   const segments = path.split(".");
+  const field = segments.pop()!;
 
   let result = object;
 
-  for (const segment of segments.slice(0, -1)) {
+  for (const segment of segments) {
     if (!isObject(result)) {
       return;
     }
@@ -75,6 +76,5 @@ export function setValueByPath(object: unknown, path: string, value: unknown) {
     return;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  result[segments[segments.length - 1]!] = value;
+  result[field] = value;
 }

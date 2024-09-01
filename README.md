@@ -11,7 +11,7 @@
 
 Cue - short for MrCai's Vue - is a light-weight MVVM framework. Features include:
 
-- [x] Two-way binding between view and model. (Proxy + Subscriptors)
+- [x] Two-way binding between view and model. (Proxy + Subscribers)
 - [x] Native TypeScript support.
 - [x] Handy directives, e.g. `c-bind`、`c-on`、`c-model`.
 
