@@ -1,4 +1,5 @@
-coverage
+.vscode
 dist
 node_modules
 *.tgz
+*.tsbuildinfo

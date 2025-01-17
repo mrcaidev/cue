@@ -1,50 +1,21 @@
-<div align="center">
-  <a href="https://github.com/mrcaidev/cue" target="_blank" rel="noreferrer" hrefLang="en">
-    <img src="assets/logo.svg" alt="Logo" width="80px"/>
-  </a>
-  <h1>Cue</h1>
-  <p>A minimal MVVM framework</p>
-  <a href="https://github.com/mrcaidev/cue/wiki" target="_blank" rel="noreferrer" hrefLang="en"><strong>Explore the documentation 》</strong></a>
-</div>
+# @mrcaidev/cue
 
-## ✨ Introduction
+Cue is a minimal MVVM framework, heavily inspired by [Vue](https://github.com/vuejs/core).
 
-Cue - short for MrCai's Vue - is a light-weight MVVM framework. Features include:
+It implements two-way binding between View layer and Model layer, and supports Vue-like mustaches and directives.
 
-- [x] Two-way binding between view and model. (Proxy + Subscribers)
-- [x] Native TypeScript support.
-- [x] Handy directives, e.g. `c-bind`、`c-on`、`c-model`.
+This project wins me the first place among 2,767 participants in Baidu Frontend Summer Workshop 2022. 🏆
 
-![example](assets/example.png)
+## Getting started
 
-## 🚀 Getting started
+Please follow the [documentation](https://github.com/mrcaidev/cue/wiki).
 
-`@mrcaidev/cue` is available in npm registry.
+## Contributing
 
-```bash
-npm i @mrcaidev/cue    # npm
-yarn add @mrcaidev/cue # yarn
-pnpm add @mrcaidev/cue # pnpm
-```
+Contributions of any kind are welcome.
 
-For detailed usage, please refer to the [documentation](https://github.com/mrcaidev/cue/wiki).
+Before making a pull request, please make sure there is a corresponding issue and it has been thoroughly discussed.
 
-## 🤝 Contributing
+## License
 
-**Any contributions will be welcome and greatly appreciated.**
-
-### Bug report
-
-If something goes wrong, please [open an issue](https://github.com/mrcaidev/cue/issues) to help us improve.
-
-### Feature request
-
-If you have an idea of a new hook, or a better solution for an existing hook, please fork this repository and [create a pull request](https://github.com/mrcaidev/cue/pulls).
-
-### Other feedback
-
-You can always open an issue, or directly contact the author via [mrcaidev@qq.com](mailto:mrcaidev@qq.com).
-
-## 📜 License
-
-[MIT](https://github.com/mrcaidev/cue/blob/master/LICENSE)
+[MIT](LICENSE)
