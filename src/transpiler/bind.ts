@@ -1,5 +1,5 @@
-import type { App } from "src/app";
-import { registerCallback } from "src/reactive";
+import type { App } from "@/app.ts";
+import { registerCallback } from "@/reactive.ts";
 
 /**
  * HTML Attributes that can only be either true or false.

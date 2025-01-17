@@ -1,5 +1,5 @@
-import { createApp } from "src";
-import { describe, expect, test } from "vitest";
+import { createApp } from "@/app.ts";
+import { describe, expect, test } from "bun:test";
 
 describe("Directive c-show", () => {
   test("Directive is parsed and removed", () => {
@@ -26,7 +26,7 @@ describe("Directive c-show", () => {
 
     expect(toggle.style.display).toEqual("none");
 
-    app.data["a"] = true;
+    app.data.a = true;
     expect(toggle.style.display).toEqual("");
   });
 });

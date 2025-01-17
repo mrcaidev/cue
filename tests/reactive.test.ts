@@ -1,9 +1,9 @@
-import { registerCallback, toDeepReactive } from "src/reactive";
-import { describe, expect, test, vi } from "vitest";
+import { registerCallback, toDeepReactive } from "@/reactive.ts";
+import { describe, expect, mock, test } from "bun:test";
 
 describe("Reactive system", () => {
   test("Object is reactive at all nested level", () => {
-    const fn = vi.fn();
+    const fn = mock();
     const data = toDeepReactive({ a: 0, b: { c: 0, d: { e: 0 } } });
     registerCallback(data, "a", fn);
     registerCallback(data, "b.c", fn);
@@ -26,8 +26,8 @@ describe("Reactive system", () => {
   });
 
   test("Multiple callbacks can be registered for the same field", () => {
-    const fn1 = vi.fn();
-    const fn2 = vi.fn();
+    const fn1 = mock();
+    const fn2 = mock();
     const data = toDeepReactive({ a: 0 });
     registerCallback(data, "a", fn1);
     registerCallback(data, "a", fn2);

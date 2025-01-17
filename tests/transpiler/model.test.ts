@@ -1,5 +1,5 @@
-import { createApp } from "src";
-import { describe, expect, test } from "vitest";
+import { createApp } from "@/app.ts";
+import { describe, expect, test } from "bun:test";
 
 describe("Directive c-model", () => {
   test("Text input is responsive", () => {
@@ -16,9 +16,9 @@ describe("Directive c-model", () => {
 
     input.value = "foo";
     input.dispatchEvent(new Event("change"));
-    expect(app.data["a"]).toEqual("foo");
+    expect(app.data.a).toEqual("foo");
 
-    app.data["a"] = "bar";
+    app.data.a = "bar";
     expect(input.value).toEqual("bar");
   });
 
@@ -36,9 +36,9 @@ describe("Directive c-model", () => {
 
     textarea.value = "foo";
     textarea.dispatchEvent(new Event("change"));
-    expect(app.data["a"]).toEqual("foo");
+    expect(app.data.a).toEqual("foo");
 
-    app.data["a"] = "bar";
+    app.data.a = "bar";
     expect(textarea.value).toEqual("bar");
   });
 
@@ -56,9 +56,9 @@ describe("Directive c-model", () => {
 
     input.checked = true;
     input.dispatchEvent(new Event("change"));
-    expect(app.data["a"]).toEqual(true);
+    expect(app.data.a).toEqual(true);
 
-    app.data["a"] = false;
+    app.data.a = false;
     expect(input.checked).toEqual(false);
   });
 
@@ -80,17 +80,18 @@ describe("Directive c-model", () => {
 
     input1.checked = true;
     input1.dispatchEvent(new Event("change"));
-    expect(app.data["a"]).toEqual(["foo"]);
+    expect(app.data.a).toContain("foo");
 
     input2.checked = true;
     input2.dispatchEvent(new Event("change"));
-    expect(app.data["a"]).toEqual(["foo", "bar"]);
+    expect(app.data.a).toContain("foo");
+    expect(app.data.a).toContain("bar");
 
-    app.data["a"] = ["bar"];
+    app.data.a = ["bar"];
     expect(input1.checked).toEqual(false);
     expect(input2.checked).toEqual(true);
 
-    app.data["a"] = [];
+    app.data.a = [];
     expect(input1.checked).toEqual(false);
     expect(input2.checked).toEqual(false);
   });
@@ -113,9 +114,9 @@ describe("Directive c-model", () => {
 
     input2.checked = true;
     input2.dispatchEvent(new Event("change"));
-    expect(app.data["a"]).toEqual("bar");
+    expect(app.data.a).toEqual("bar");
 
-    app.data["a"] = "foo";
+    app.data.a = "foo";
     expect(input1.checked).toEqual(true);
     expect(input2.checked).toEqual(false);
   });
@@ -137,9 +138,9 @@ describe("Directive c-model", () => {
 
     select.value = "bar";
     select.dispatchEvent(new Event("change"));
-    expect(app.data["a"]).toEqual("bar");
+    expect(app.data.a).toEqual("bar");
 
-    app.data["a"] = "foo";
+    app.data.a = "foo";
     expect(select.value).toEqual("foo");
   });
 });

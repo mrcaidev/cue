@@ -1,5 +1,5 @@
-import { toDeepReactive } from "./reactive";
-import { transpile } from "./transpiler";
+import { toDeepReactive } from "./reactive.ts";
+import { transpile } from "./transpiler/transpile.ts";
 
 /**
  * Options of a Cue app.
@@ -17,12 +17,13 @@ interface Options {
   /**
    * Data source of the app.
    */
+  // biome-ignore lint/suspicious/noExplicitAny: For easier usage.
   data?: Record<string, any>;
 
   /**
    * Methods that can manipulate the data, or trigger some side effects.
    */
-  methods?: Record<string, (...args: any[]) => any>;
+  methods?: Record<string, (...args: unknown[]) => unknown>;
 }
 
 /**

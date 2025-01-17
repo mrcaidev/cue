@@ -1,4 +1,4 @@
-import type { App } from "src/app";
+import type { App } from "@/app.ts";
 
 /**
  * Handle a possible `c-on` directive.

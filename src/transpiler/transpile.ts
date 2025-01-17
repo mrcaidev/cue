@@ -1,10 +1,10 @@
-import type { App } from "src/app";
-import { handleBindDirective } from "./bind";
-import { handleHtmlDirective } from "./html";
-import { handleModelDirective } from "./model";
-import { handleMustache } from "./mustache";
-import { handleOnDirective } from "./on";
-import { handleShowDirective } from "./show";
+import type { App } from "@/app.ts";
+import { handleBindDirective } from "./bind.ts";
+import { handleHtmlDirective } from "./html.ts";
+import { handleModelDirective } from "./model.ts";
+import { handleMustache } from "./mustache.ts";
+import { handleOnDirective } from "./on.ts";
+import { handleShowDirective } from "./show.ts";
 
 /**
  * Transpile Cue syntax into normal HTML syntax.
@@ -59,21 +59,20 @@ function prepareFragment(root: Node) {
  * @param app - The app instance.
  */
 function transpileNode(node: Node, app: App) {
-  node.childNodes.forEach((childNode) => {
+  for (const childNode of node.childNodes) {
     if (
       childNode.nodeType === Node.TEXT_NODE &&
-      childNode.textContent!.trim() !== ""
+      childNode.textContent?.trim() !== ""
     ) {
       transpileTextNode(childNode as Text, app);
-      return;
+      continue;
     }
 
     if (childNode.nodeType === Node.ELEMENT_NODE) {
       transpileElementNode(childNode as HTMLElement, app);
       transpileNode(childNode, app);
-      return;
     }
-  });
+  }
 }
 
 /**
@@ -93,11 +92,11 @@ function transpileTextNode(node: Text, app: App) {
  * @param app - The app instance.
  */
 function transpileElementNode(node: HTMLElement, app: App) {
-  node.getAttributeNames().forEach((attributeName) => {
+  for (const attributeName of node.getAttributeNames()) {
     handleBindDirective(node, attributeName, app);
     handleOnDirective(node, attributeName, app);
     handleModelDirective(node, attributeName, app);
     handleShowDirective(node, attributeName, app);
     handleHtmlDirective(node, attributeName, app);
-  });
+  }
 }

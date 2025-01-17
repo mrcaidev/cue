@@ -1,6 +1,6 @@
-import type { App } from "src/app";
-import { registerCallback } from "src/reactive";
-import { getValueByPath, setValueByPath } from "src/utils/object";
+import type { App } from "@/app.ts";
+import { registerCallback } from "@/reactive.ts";
+import { getValueByPath, setValueByPath } from "@/utils/object.ts";
 
 /**
  * Handle a possible `c-model` directive.

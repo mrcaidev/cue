@@ -10,7 +10,7 @@
  * isObject(null); // false
  * isObject(1); // false
  */
-export function isObject(value: any): value is Record<string, any> {
+export function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 
@@ -26,7 +26,7 @@ export function isObject(value: any): value is Record<string, any> {
  * getValueByPath(object, "foo.a"); // "hello"
  * getValueByPath(object, "foo.c"); // undefined
  */
-export function getValueByPath(object: any, path: string) {
+export function getValueByPath(object: unknown, path: string) {
   const segments = path.split(".");
 
   let result = object;
@@ -54,9 +54,9 @@ export function getValueByPath(object: any, path: string) {
  * setValueByPath(object, "foo.a", "goodbye"); // { foo: { a: "goodbye", b: "world" } };
  * setValueByPath(object, "foo.c", "yeah"); // { foo: { a: "hello", b: "world", c: "yeah" } };
  */
-export function setValueByPath(object: any, path: string, value: any) {
+export function setValueByPath(object: unknown, path: string, value: unknown) {
   const segments = path.split(".");
-  const field = segments.pop()!;
+  const field = segments.pop() as string;
 
   let result = object;
 

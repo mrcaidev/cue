@@ -1,5 +1,5 @@
-import { createApp } from "src";
-import { describe, expect, test, vi } from "vitest";
+import { createApp } from "@/app.ts";
+import { describe, expect, mock, test } from "bun:test";
 
 describe("Directive c-on", () => {
   test("Directive is parsed and removed", () => {
@@ -23,7 +23,7 @@ describe("Directive c-on", () => {
         <button @click="handler" id="test"></button>
       </div>
     `;
-    const handler = vi.fn();
+    const handler = mock();
     createApp({ root: "#app", methods: { handler } });
     const button = document.querySelector<HTMLButtonElement>("#test")!;
 

@@ -1,5 +1,5 @@
-import { createApp } from "src";
-import { describe, expect, test } from "vitest";
+import { createApp } from "@/app.ts";
+import { describe, expect, test } from "bun:test";
 
 describe("Mustache syntax", () => {
   test("Mustache syntax is parsed and removed", () => {
@@ -37,10 +37,10 @@ describe("Mustache syntax", () => {
 
     expect(paragraph.textContent).toEqual("0 0");
 
-    app.data["a"] = 1;
+    app.data.a = 1;
     expect(paragraph.textContent).toEqual("1 0");
 
-    app.data["b"].c = 2;
+    app.data.b.c = 2;
     expect(paragraph.textContent).toEqual("1 2");
   });
 });

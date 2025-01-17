@@ -1,5 +1,5 @@
-import type { App } from "src/app";
-import { registerCallback } from "src/reactive";
+import type { App } from "@/app.ts";
+import { registerCallback } from "@/reactive.ts";
 
 /**
  * Handle a possible `c-show` directive.

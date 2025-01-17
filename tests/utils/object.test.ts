@@ -1,5 +1,5 @@
-import { getValueByPath, isObject, setValueByPath } from "src/utils/object";
-import { describe, expect, test } from "vitest";
+import { getValueByPath, isObject, setValueByPath } from "@/utils/object.ts";
+import { describe, expect, test } from "bun:test";
 
 describe("isObject", () => {
   test("It returns true if the value is an object", () => {

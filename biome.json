@@ -8,7 +8,12 @@
     "clientKind": "git"
   },
   "linter": {
-    "enabled": true
+    "enabled": true,
+    "rules": {
+      "style": {
+        "noNonNullAssertion": "off"
+      }
+    }
   },
   "formatter": {
     "enabled": true,

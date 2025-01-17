@@ -1,1 +1,1 @@
-export { createApp } from "./app";
+export { createApp } from "./app.ts";

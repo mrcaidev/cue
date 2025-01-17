@@ -1,4 +1,4 @@
-import { getValueByPath, isObject } from "./utils/object";
+import { getValueByPath, isObject } from "./utils/object.ts";
 
 /**
  * For a proxy setter, if the intercepted key equals to this special string,
@@ -10,13 +10,13 @@ const __CUE_INTERNAL_REGISTER_CALLBACK__ = "__CUE_INTERNAL_REGISTER_CALLBACK__";
 /**
  * An object.
  */
-type Obj = Record<string | symbol, any>;
+type Obj = Record<string | symbol, unknown>;
 
 /**
  * A callback is a function, registered for a certain field,
  * and triggered every time this field is set to a new value.
  */
-type Callback = (newValue: any) => any;
+type Callback = (newValue: unknown) => unknown;
 
 /**
  * Make an object reactive.
@@ -60,7 +60,10 @@ function toReactive<T extends Obj>(object: T) {
       // Otherwise, update the field and trigger the callbacks.
       // TODO: Callback registries should be migrated to the new object.
       (target as Obj)[key] = toDeepReactive(newValue);
-      callbackRegistry[key]?.forEach((callback) => callback(target[key]));
+
+      for (const callback of callbackRegistry[key] ?? []) {
+        callback(target[key]);
+      }
 
       return true;
     },
@@ -85,9 +88,9 @@ export function toDeepReactive<T>(value: T) {
   // its own proxy setter will be frequently invoked
   // when its fields are being set to their proxified version,
   // which can cause a great performance loss.
-  Object.entries(value).forEach(([key, val]) => {
-    (value as Obj)[key] = toDeepReactive(val);
-  });
+  for (const key in value) {
+    (value as Obj)[key] = toDeepReactive(value[key]);
+  }
 
   // Make itself deeply reactive.
   return toReactive(value as Obj) as T;

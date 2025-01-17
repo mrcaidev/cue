@@ -1,5 +1,5 @@
-import { createApp } from "src";
-import { describe, expect, test } from "vitest";
+import { createApp } from "@/app.ts";
+import { describe, expect, test } from "bun:test";
 
 describe("Directive c-html", () => {
   test("Directive is parsed and removed", () => {
@@ -26,7 +26,7 @@ describe("Directive c-html", () => {
 
     expect(parent.innerHTML).toEqual("<p>foo</p>");
 
-    app.data["a"] = "<p>bar</p>";
+    app.data.a = "<p>bar</p>";
     expect(parent.innerHTML).toEqual("<p>bar</p>");
   });
 });
