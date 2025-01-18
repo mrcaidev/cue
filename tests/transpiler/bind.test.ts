@@ -26,7 +26,7 @@ describe("Directive c-bind", () => {
         <div :class="a" id="test"></p>
       </div>
     `;
-    const app = createApp({ root: "#app", data: { a: 0 } });
+    createApp({ root: "#app", data: { a: 0 } });
     const div = document.querySelector("#test")!;
 
     expect(div.className).toEqual("0");
